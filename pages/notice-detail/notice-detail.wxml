@@ -1,0 +1,10 @@
+<cu-custom bgColor="bg-brand" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">公告详情</view>
+</cu-custom>
+<view class='padding bg-white'>
+  <view class='text-center margin-bottom text-lg  text-grey'>这里是公告标题</view>
+  <view class='text-content'>
+    <view>塔里克是保护者星灵，用超乎寻常的力量守护着符文之地的生命、仁爱以及万物之美。塔里克由于渎职而被放逐，离开了祖国德玛西亚，前去攀登巨神峰寻找救赎，但他找到的却是来自星界的更高层的召唤。现在的塔里克与古代巨神族的神力相融合，以瓦洛兰之盾的身份，永不疲倦地警惕着阴险狡诈的虚空腐化之力。</view>
+  </view>
+</view>

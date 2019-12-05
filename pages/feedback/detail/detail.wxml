@@ -1,0 +1,88 @@
+<cu-custom bgColor="bg-brand" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">反馈详情</view>
+</cu-custom>
+<view class="cu-card dynamic">
+  <view class="cu-item shadow">
+    <view class="cu-list menu-avatar">
+      <view class="cu-item">
+        <view class="cu-avatar round lg" style="background-image:url({{feedback.studentAvatarUrl}});"></view>
+        <view class="content flex-sub">
+          <view class="text-black text-bold">{{feedback.subject}}</view>
+          <view class="text-gray text-sm flex">
+            <text>作者：{{feedback.teacherName}}</text>
+            <text class="margin-left">{{filter.formatTime(feedback.createDate)}}</text>
+            <text class="cuIcon-delete margin-left" catchtap='deleteFeedback' data-id="{{feedback.id}}" wx:if="{{loginUser.pin === feedback.creator}}"></text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="text-content">{{feedback.content}}</view>
+    <view class="grid flex-sub padding-lr padding-bottom {{(feedback.resourceUrlList.length === 1) ? '' : 'grid-square'}} {{'col-' + filter.colNumber(feedback.resourceUrlList.length)}}">
+      <view class="bg-img {{(feedback.resourceUrlList.length === 1) ? 'only-img' : ''}}" style="background-image:url({{item}});" wx:for="{{feedback.resourceUrlList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{item}}"></view>
+    </view>
+    <view class="cu-list menu-avatar comment solids-top">
+      <!-- <view class="cu-item solid-top">
+        <view class="cu-avatar round" style="background-image:url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564854943602&di=68f3bfdf8dfa61106e8167dd06c9d455&imgtype=0&src=http%3A%2F%2Fhiphotos.baidu.com%2Fbaidu%2Fpic%2Fitem%2F91529822720e0cf3f6986cba0246f21fbe09aa07.jpg);"></view>
+        <view class="content">
+          <view class="text-black">陈道明老师</view>
+          <view class="text-gray text-content text-df">家长的教育同样重要，希望你们的孩子在今后的日子里能学到更多的知识！</view>
+          <view class="margin-top-sm flex justify-between">
+            <view class="text-gray text-df">2019年08月03日 19:00</view>
+          </view>
+        </view>
+      </view> -->
+      <block wx:for="{{commentList}}" wx:key="id">
+        <view class="cu-item">
+          <view class="cu-avatar round" style="background-image:url({{item.avatarUrl}});"></view>
+          <view class="content">
+            <view class="text-grey text-bold">
+              {{filter.relationName(item.relationType, item.userName, feedback.studentName)}}
+            </view>
+            <view class="text-gray text-content text-df">{{item.content}}</view>
+            <view class="margin-top-sm flex justify-between">
+              <view class="text-gray text-df">{{filter.formatTime(item.modifyDate)}}</view>
+              <view wx:if="{{loginUser.pin === item.creator}}">
+                <text class="cuIcon-writefill text-gray" catchtap="editComment" data-comment="{{item}}"></text>
+                <text class="cuIcon-deletefill text-gray margin-left" catchtap="deleteComment" data-id="{{item.id}}"></text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view style="height: {{isIphoneX ? '168rpx' : '120rpx'}}"></view>
+</view>
+<view class="btn-bottom {{isIphoneX ? 'isIphoneX' : ''}}">
+  <button class="cu-btn round bg-brand lg" bind:tap="showModal">说两句吧</button>
+</view>
+<view class="cu-modal bottom-modal show" wx:if="{{showModal}}">
+  <view class="cu-dialog bg-white" style="height:calc(100vh - {{CustomBar}}px)">
+    <view class="cu-bar bg-white padding-lr">
+      <button class="cu-btn" bindtap="hideModal">取消</button>
+      <text class="text-black">评论</text>
+      <button class="cu-btn bg-green" disabled="{{!feedbackContent}}" bindtap="saveFeedbackContent">
+        保存
+      </button>
+    </view>
+    <view class="cu-form-group solid-top">
+      <textarea maxlength="-1" bindinput="textareaAInput" placeholder="请输入内容，最多100个字符～" maxlength="100" value="{{feedbackContent}}" fixed focus></textarea>
+    </view>
+  </view>
+</view>
+<view class="cu-modal bottom-modal show" wx:if="{{showCommentEditModal}}">
+  <view class="cu-dialog bg-white" style="height:calc(100vh - {{CustomBar}}px)">
+    <view class="cu-bar bg-white padding-lr">
+      <button class="cu-btn" bindtap="hideCommentEditModal">取消</button>
+      <text class="text-black">评论</text>
+      <button class="cu-btn bg-green" disabled="{{!commentParam.content}}" bindtap="saveComnentContent">
+        保存
+      </button>
+    </view>
+    <view class="cu-form-group solid-top">
+      <textarea maxlength="-1" bindinput="commentContentInput" placeholder="请输入内容，最多100个字符～" maxlength="100" value="{{commentParam.content}}" fixed focus></textarea>
+    </view>
+  </view>
+</view>
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>

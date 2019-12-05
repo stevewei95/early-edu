@@ -1,0 +1,74 @@
+.info-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 200rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+  background-color: var(--brandColor);
+}
+
+.info-left {
+  display: flex;
+  align-items: center;
+}
+
+.info-user {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 82rpx;
+  margin-left: 20rpx;
+}
+
+.to-login {
+  margin-left: 20rpx;
+  font-size: 36rpx;
+  line-height: 36rpx;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.user-main {
+  display: flex;
+  align-items: center;
+}
+
+.user-name {
+  font-size: 36rpx;
+  line-height: 36rpx;
+  font-weight: bold;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.user-sex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36rpx;
+  height: 36rpx;
+  margin-left: 16rpx;
+  font-size: 24rpx;
+  line-height: 24rpx;
+  border-radius: 6rpx;
+  color: var(--brandColor);
+  background-color: #212121;
+}
+
+.user-id {
+  font-size: 24rpx;
+  line-height: 24rpx;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.info-container .gif-wave{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  mix-blend-mode: screen;  
+  height: 100rpx;   
+}

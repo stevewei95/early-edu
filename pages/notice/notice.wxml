@@ -1,0 +1,48 @@
+<cu-custom bgColor="bg-brand" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">公告板</view>
+</cu-custom>
+<view class="cu-list menu-avatar notice-list">
+  <view class="cu-item solid-top" bind:tap="showNoticeDetail">
+    <view class="cu-avatar round lg bg-brand">瓦</view>
+    <view class="content">
+      <view>
+        <text class="text-cut">瓦罗兰大陆-睡衣守护者</text>
+      </view>
+      <view class="text-gray text-sm flex">
+        <text class="text-cut">塔里克是保护者星灵，用超乎寻常的力量守护着符文之地的生命、仁爱以及万物之美。塔里克由于渎职而被放逐，离开了祖国德玛西亚，前去攀登巨神峰寻找救赎，但他找到的却是来自星界的更高层的召唤。现在的塔里克与古代巨神族的神力相融合，以瓦洛兰之盾的身份，永不疲倦地警惕着阴险狡诈的虚空腐化之力。</text>
+      </view>
+    </view>
+    <view class="action">
+      <view class="text-grey text-xs">12:30</view>
+    </view>
+  </view>
+  <view class="cu-item solid-top" bind:tap="showNoticeDetail">
+    <view class="cu-avatar round lg bg-brand">莫</view>
+    <view class="content">
+      <view>
+        <text class="text-cut">莫甘娜归来了</text>
+      </view>
+      <view class="text-gray text-sm flex">
+        <text class="text-cut">凯尔，你被自己的光芒变的盲目！</text>
+      </view>
+    </view>
+    <view class="action">
+      <view class="text-grey text-xs">22:20</view>
+    </view>
+  </view>
+  <view class="cu-item solid-top" bind:tap="showNoticeDetail">
+    <view class="cu-avatar round lg bg-brand">八</view>
+    <view class="content">
+      <view>
+        <text class="text-cut">八月中旬将举行亲子活动</text>
+      </view>
+      <view class="text-gray text-sm flex">
+        <text class="text-cut">等我回来一个打十个</text>
+      </view>
+    </view>
+    <view class="action">
+      <view class="text-grey text-xs">23:09</view>
+    </view>
+  </view>
+</view>

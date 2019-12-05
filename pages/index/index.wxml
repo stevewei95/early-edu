@@ -1,0 +1,159 @@
+<cu-custom bgColor="bg-brand">
+  <view slot="right">
+    <view class="custom-container" style="height:{{CustomBar-StatusBar}}px">
+      <view class="hello" wx:if="{{loginUser.userType === 1}}">您好，{{userInfo.name}}</view>
+      <view class="hello" wx:if="{{loginUser.userType === 3}}">
+        您好，{{filter.relationName(studentInfo.relationType, '家长', '孩子')}}
+      </view>
+    </view>
+  </view>
+</cu-custom>
+<view class="main-container">
+  <view class="btn-container">
+    <view class="btn-container-item" bind:tap="showNotice">
+      <image src="/images/index/sound.png"></image>
+      <text>公告板</text>
+    </view>
+    <view class="btn-container-item" bind:tap="showFeedbackCreate" wx:if="{{loginUser.userType === 1}}">
+      <image src="/images/index/plus.png"></image>
+      <text>发布反馈</text>
+    </view>
+    <view class="btn-container-item" bind:tap="showStudentList" wx:if="{{loginUser.userType === 3}}">
+      <image src="/images/index/switch.png"></image>
+      <text>我的孩子</text>
+    </view>
+    <view class="btn-container-item" bind:tap="showFeedbackList">
+      <image src="/images/index/detail.png"></image>
+      <text wx:if="{{loginUser.userType === 1}}">我的反馈</text>
+      <text wx:if="{{loginUser.userType === 3}}">老师说</text>
+    </view>
+  </view>
+  <!-- <view class="info-card" wx:if="{{loginUser.userType === 1}}">
+    <view class="info-top">
+      <view class="cu-avatar round lg" style="background-image:url({{!userInfo.avatarUrl ? wxUserInfo.avatarUrl : userInfo.avatarUrl}});"></view>
+      <view class="info-main">
+        <view class="user-main-info">
+          <text class="user-name">{{userInfo.name}}</text>
+          <view class="user-sex">{{userInfo.gender === 1 ? '男' : '女'}}</view>
+        </view>
+        <text class="user-id">{{!userInfo.introduction ? '暂无介绍' : userInfo.introduction}}</text>
+      </view>
+      <image class="info-edit" src="/images/index/pen.png" bind:tap="showUserEdit"></image>
+    </view>
+    <view class="info-content">
+      <text>英文名：{{userInfo.ename}}</text>
+      <text>编号：{{userInfo.id}}</text>
+    </view>
+  </view> -->
+  <view class="info-card shadow-warp" wx:if="{{loginUser.userType === 1}}">
+    <view class="cu-avatar user-avatar" style="background-image:url({{!userInfo.avatarUrl ? wxUserInfo.avatarUrl : userInfo.avatarUrl}});"></view>
+    <view class="info-top">
+      <view class="user-main-info" bind:tap="showUserEdit">
+        <text class="user-name text-cut">{{userInfo.name}}（{{userInfo.ename}}）</text>
+        <image class="info-edit" src="/images/index/pen.png"></image>
+      </view>
+      <view class="info-content">
+        <view class="content-title">
+          <text class="cuIcon-newshot text-white margin-right-xs"></text>
+          <text>我的介绍</text>
+        </view>
+        <view class="content-text">{{userInfo.introduction || '空空如也，什么也没有留下～'}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="info-card shadow-warp" wx:if="{{loginUser.userType === 3}}">
+    <view class="cu-avatar user-avatar" style="background-image:url({{studentInfo.avatarUrl}});"></view>
+    <view class="info-top">
+      <view class="user-main-info" bind:tap="showStudentEdit">
+        <text class="user-name text-cut">{{studentInfo.name}}（{{studentInfo.nickName}}）</text>
+        <image class="info-edit" src="/images/index/pen.png"></image>
+      </view>
+      <view class="info-content">
+        <view class="content-title">
+          <text class="cuIcon-newshot text-white margin-right-xs"></text>
+          <text>孩子介绍</text>
+        </view>
+        <view class="content-text">{{studentInfo.introduction || '空空如也，什么也没有留下～'}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="info-card" wx:if="{{loginUser.userType === 3}}">
+    <view class="info-top">
+      <view class="cu-avatar round lg" style="background-image:url({{studentInfo.avatarUrl}});"></view>
+      <view class="info-main">
+        <view class="user-main-info">
+          <text class="user-name">{{studentInfo.name}}（{{studentInfo.nickName}}）</text>
+        </view>
+        <text class="user-id">ID：{{studentInfo.id}}</text>
+      </view>
+      <image class="info-edit" src="/images/index/pen.png" bind:tap="showStudentEdit"></image>
+    </view>
+    <view class="info-content">
+      <text><text class=" cuIcon-newshot text-white margin-right-xs"></text>{{studentInfo.introduction || '空空如也，什么也没有留下～'}}</text>
+    </view>
+  </view> -->
+</view>
+<view class="list-container">
+  <block wx:for="{{feedbackList}}" wx:key="id">
+    <view class="cu-card dynamic no-card list-item" bind:tap="showDetail" data-id="{{item.id}}">
+      <view class="cu-item shadow-warp">
+        <view class="cu-list menu-avatar">
+          <view class="cu-item">
+            <view class="cu-avatar round lg" style="background-image:url({{loginUser.userType === 1 ? item.studentAvatarUrl : item.teacherAvatarUrl}});"></view>
+            <view class="content flex-sub">
+              <view class="text-black text-bold">
+                {{loginUser.userType === 1 ? item.studentName : item.teacherName}}
+              </view>
+              <view class="text-black text-sm flex">
+                <text class=" cuIcon-new text-black margin-right-xs"></text>
+                <text>{{item.subject}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="text-content">{{item.content}}</view>
+        <view class="grid flex-sub padding-lr {{(item.resourceUrlList.length === 1) ? '' : 'grid-square'}} {{'col-' + filter.colNumber(item.resourceUrlList.length)}}">
+          <view class="bg-img {{(item.resourceUrlList.length === 1) ? 'only-img' : ''}}" style="background-image:url({{img}});" wx:for="{{item.resourceUrlList}}" wx:for-item="img" wx:key="{{index}}"></view>
+        </view>
+        <view class="footer flex justify-between">
+          <view class="text-gray text-sm padding text-left">
+            <text class="cuIcon-time margin-right-xs"></text>
+            <text>{{filter.formatTime(item.createDate)}}</text>
+          </view>
+          <view class="text-gray text-df text-right padding" catchtap='deleteFeedback' data-id="{{item.id}}" wx:if="{{loginUser.pin === item.creator}}">
+            <text class="cuIcon-delete"></text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view class="cu-card dynamic no-card list-item" wx:if="{{!feedbackList||feedbackList.length===0}}">
+    <view class="cu-item shadow padding no-data">
+      <view class="text-xsl padding">
+        <text class=" cuIcon-emoji text-black"></text>
+      </view>
+      <text class="text-bold text-shadow">暂时没有反馈内容～</text>
+    </view>
+  </view>
+  <!-- <view class="cu-card dynamic no-card list-item" bind:tap="showDetail">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565089234660&di=e020aa7eb528a64fd7a57622d1ff945c&imgtype=0&src=http%3A%2F%2Fwww.ghost64.com%2Fqqtupian%2FzixunImg%2Flocal%2F2017%2F09%2F22%2F15060569953608.jpg);"></view>
+          <view class="content flex-sub">
+            <view>吴京老师</view>
+            <view class="text-gray text-sm flex justify-between">2019年08月03日 19:00</view>
+          </view>
+        </view>
+      </view>
+      <view class="text-content">还有有表演天赋，可以多多培养艺术兴趣，将来成为优秀的演员！</view>
+      <view class="grid flex-sub padding-lr col-3 grid-square">
+        <view class="bg-img" style="background-image:url({{item}});" wx:for="{{imgList}}" wx:key="{{index}}"></view>
+      </view>
+      <view class="text-gray text-sm text-right padding">
+        <text class="cuIcon-messagefill margin-lr-xs"></text>3
+      </view>
+    </view>
+  </view> -->
+</view>
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>

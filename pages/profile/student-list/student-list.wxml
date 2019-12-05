@@ -1,0 +1,48 @@
+<cu-custom bgColor="bg-brand" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">我的孩子</view>
+</cu-custom>
+<!-- <form>
+  <radio-group class="block" bindchange="onStudentChange">
+    <label class="radio" wx:for="{{studentList}}" wx:key="item.id">
+      <view class="cu-form-group solid-top">
+        <view class="title">
+          <radio value="{{item.id}}" checked="{{item.id === currentStudent}}"></radio>
+          <view class="cu-avatar radius bg-gray margin-left" style="background-image:url({{item.avatarUrl}});"></view>
+          <text class="margin-left-xs">{{item.name}}（{{item.nickName}}）</text>
+        </view>
+        <button class="cu-btn bg-brand round" bind:tap="onStudentEdit" data-id="{{item.id}}">
+          编辑
+        </button>
+      </view>
+    </label>
+  </radio-group>
+</form> -->
+<radio-group class='nav-list' bindchange="onStudentChange">
+  <view class="nav-li {{item.id === currentStudent ? 'bg-brand' : 'bg-white'}}" wx:for="{{studentList}}" wx:key="item.id">
+    <view class="left">
+      <radio class="radio" value="{{item.id}}" checked="{{item.id === currentStudent}}"></radio>
+    </view>
+    <view class="middle">
+      <view class="student-box">
+        <view class="cu-avatar round lg bg-gray" style="background-image:url({{item.avatarUrl}});">
+          <view class="cu-tag badge {{item.gender===1?'cuIcon-female bg-pink':'cuIcon-male bg-blue'}}"></view>
+        </view>
+        <text class="text-name">{{item.name}}</text>
+      </view>
+      <view class="text-xxl">
+        <text class=" cuIcon-link"></text>
+      </view>
+      <view class="relative-box">
+        <view class="cu-avatar round lg bg-gray" style="background-image:url({{relative.avatarUrl}});"></view>
+        <text class="text-name">{{filter.relationText(item.relationType)}}</text>
+      </view>
+    </view>
+    <view class="right">
+      <button class="cu-btn icon {{item.id === currentStudent ? 'bg-yellow' : 'bg-gray'}}" bind:tap="onStudentEdit" data-id="{{item.id}}" wx:if="{{item.adminTag === 1}}">
+        <text class="cuIcon-edit"></text>
+      </button>
+    </view>
+  </view>
+</radio-group>
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>

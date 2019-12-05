@@ -1,0 +1,8 @@
+/* pages/feedback/detail/detail.wxss */
+.cu-modal {
+  text-align: initial !important;
+}
+
+.cu-form-group textarea {
+  height: 400rpx;
+}

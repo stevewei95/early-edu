@@ -1,0 +1,42 @@
+<cu-custom bgColor="bg-brand" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">编辑关联</view>
+</cu-custom>
+<form>
+  <view class="cu-form-group">
+    <view class="title">登录手机</view>
+    <view>
+      <text class="text-black">{{relativeInfo.loginPhone}}</text>
+      <!-- <text class="cuIcon-right lg text-gray margin-left-xs"></text> -->
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">孩子关系</view>
+    <picker bindchange="relationChange" value="{{relationIndex}}" range="{{relations}}" range-key="name">
+      <view class="picker">
+        <text>{{relativeInfo.relationType?filter.relationText(relativeInfo.relationType):'请选择'}}</text>
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">操作权限</view>
+    <picker bindchange="permissionChange" value="{{permissionIndex}}" range="{{permissions}}">
+      <view class="picker">
+        <text>{{relativeInfo.adminTag!==null?permissions[relativeInfo.adminTag]:'请选择'}}</text>
+      </view>
+    </picker>
+  </view>
+</form>
+<view class="cu-modal bottom-modal show" wx:if="{{showPhoneModal}}">
+  <view class="cu-dialog" style="height:calc(100vh - {{CustomBar}}px)">
+    <view class="cu-bar bg-white padding-lr">
+      <button class="cu-btn" bindtap="hidePhoneModal">取消</button>
+      <text class="text-black">登录手机</text>
+      <button class="cu-btn bg-green" bindtap="updateRelation">保存</button>
+    </view>
+    <view class="cu-form-group solid-top">
+      <input style="text-align:left" placeholder="" value="{{relativeInfoParam.loginPhone}}" maxlength="11" focus bindinput="phoneInput"></input>
+    </view>
+  </view>
+</view>
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>

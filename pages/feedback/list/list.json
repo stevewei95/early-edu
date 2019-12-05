@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "feedbacks-cmp": "/components/feedbacks/index"
+  },
+  "enablePullDownRefresh": true
+}

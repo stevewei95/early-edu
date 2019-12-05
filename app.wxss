@@ -1,0 +1,50 @@
+/**app.wxss**/
+@import "components/colorui/main.wxss";
+@import "components/colorui/icon.wxss";
+
+page {
+  /* iOS:苹方 Android:思源 */
+  /* font&color 会继承到组件内部 */
+  font-family: Helvetica Neue, Helvetica, sans-serif;
+  font-size: 32rpx;
+
+  /* 颜色 */
+  --brandColor: #ffe13a;
+}
+
+.bg-brand {
+  background-color: var(--brandColor);
+}
+
+
+/* iphoneX适配 */
+.isIphoneX {
+  padding-bottom: 68rpx !important;
+}
+
+.isIphoneX::after {
+  content: ' ';
+  position: fixed;
+  bottom: 0 !important;
+  height: 68rpx !important;
+  width: 100%;
+  background: #fff;
+}
+
+/* 底部按钮 */
+.btn-bottom {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.btn-bottom button {
+  width: 100%;
+}

@@ -1,0 +1,15 @@
+<cu-custom>
+  <view slot="content">登录</view>
+</cu-custom>
+<view class="container">
+  <view class="logo-container">
+    <image class="logo" src="http://hbimg.b0.upaiyun.com/f89a35d2617c0c2b83f9c6149021b383cd6b977730fa-Al3vpM_fw658"></image>
+    <text class="logo-name">星野直樹</text>
+  </view>
+  <view class="btn-container padding-lr-lg flex flex-direction">
+    <button class="cu-btn bg-gradual-green lg" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+      微信登录
+    </button>
+    <button class="cu-btn bg-yellow margin-top-sm lg" bind:tap="toMobileLogin">手机登录</button>
+  </view>
+</view>

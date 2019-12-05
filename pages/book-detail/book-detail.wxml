@@ -1,0 +1,77 @@
+<view class="container">
+  <view class="head">
+    <image src="{{book.image}}"></image>
+    <text class="title">{{book.title}}</text>
+    <text class="author">{{book.author}}</text>
+  </view>
+  <view class="sub-container">
+    <text class="headline">短评</text>
+    <text class="shadow" wx:if="{{!comments}}">还没有短评</text>
+    <view class="comment-container">
+      <block wx:for="{{filter.limit(comments, 10)}}" wx:key="content">
+        <tag-cmp class="tag" tag-class="{{bookDetailModule.setTagClass(index)}}" text="{{item.content}}">
+          <text class="num" slot="after">{{'+' + item.nums}}</text>
+        </tag-cmp>
+      </block>
+    </view>
+  </view>
+  <view class="sub-container">
+    <text class="headline">内容简介</text>
+    <text class="content" decode="{{true}}">{{filter.format(book.summary)}}</text>
+  </view>
+  <view class="sub-container">
+    <text class="headline">书本信息</text>
+    <view class="detail-contaner">
+      <view class="vertical">
+        <text class="description">出版社</text>
+        <text class="description">出版年</text>
+        <text class="description">页数</text>
+        <text class="description">定价</text>
+        <text class="description">装帧</text>
+      </view>
+      <view class="vertical">
+        <text class="">{{book.publisher}}</text>
+        <text class="">{{book.pubdate}}</text>
+        <text class="">{{book.pages}}</text>
+        <text class="">{{book.price}}</text>
+        <text class="">{{book.binding}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="post-container" wx:if="{{!posting}}">
+  <view bind:tap="onFakePost" class="post-fake">
+    <text>输入短评</text>
+  </view>
+   <view class="like-container">
+      <like-cmp bind:like="onLike" class="like" like="{{likeStatus}}" count="{{likeCount}}" />
+      <img-btn-cmp class="share-btn" open-type="share">
+        <image class="share" slot="img" src="/images/icon/share.png" />
+      </img-btn-cmp>
+    </view>
+</view>
+<view class="posting-container" wx:if="{{posting}}">
+  <view class="post-header">
+    <text wx:if="{{comments}}">仅可点击标签+1</text>
+    <text wx:else>暂无短评</text>
+    <text class="cancel" bind:tap="onCancel">取消</text>
+  </view>
+  <view class="comment-container">
+    <block wx:for="{{filter.limit(comments, 3)}}" wx:key="content">
+        <tag-cmp class="tag" bind:tapping="onPost" tag-class="{{bookDetailModule.setTagClass(index)}}" text="{{item.content}}">
+          <text class="num" slot="after">{{'+' + item.nums}}</text>
+        </tag-cmp>
+      </block>
+  </view>
+  <input focus="{{posting}}" class="post" bindconfirm="onPost" placeholder="短评最多12个字"></input>
+</view>
+<mask-cmp wx:if="{{posting}}"></mask-cmp>
+<wxs src="../../utils/filter.wxs" module="filter"></wxs>
+<wxs module="bookDetailModule">
+  var setTagClass = function(index) {
+    return index === 0 ? 'ex-tag-1st' : '' || index === 1 ? 'ex-tag-2nd' : ''
+  }
+  module.exports = {
+    setTagClass: setTagClass
+  }
+</wxs>

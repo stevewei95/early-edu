@@ -1,0 +1,13 @@
+<!-- <navigator class="nav" target="miniProgram" app-id="wx8ffc97ad5bcccc89" open-type="navigate">
+  <image class="" src=""></image>
+</navigator> -->
+<cu-custom bgColor="bg-brand" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">关于</view>
+</cu-custom>
+<view class="container" style="margin-top:-{{CustomBar}}px">
+  <text class="item">Author: Steve Wei</text>
+  <text class="item">Date: 01, August, 2019</text>
+  <text class="item">Framework: v2.6.4</text>
+  <text class="item">Devtools: 1.02.1907160</text>
+</view>

@@ -1,0 +1,13 @@
+<cu-custom>
+  <view slot="content">微信授权登录</view>
+</cu-custom>
+<view class="container">
+  <view class="logo-container">
+    <image class="logo" src="http://hbimg.b0.upaiyun.com/f89a35d2617c0c2b83f9c6149021b383cd6b977730fa-Al3vpM_fw658"></image>
+    <text class="logo-name">星野直樹</text>
+  </view>
+  <view class="btn-container padding-lr-lg flex flex-direction">
+    <text>请完成微信授权以继续使用</text>
+    <button class="cu-btn bg-green margin-top-sm lg" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">微信授权用户信息</button>
+  </view>
+</view>

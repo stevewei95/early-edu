@@ -1,0 +1,17 @@
+.container {
+  padding-bottom: 30rpx;
+}
+
+.loading {
+  margin: 50rpx 0 50rpx 0;
+}
+
+.foot-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cu-card>.cu-item {
+  margin-bottom: 0;
+}

@@ -1,0 +1,69 @@
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx;
+}
+
+.nav-li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 40rpx;
+  border-radius: 12rpx;
+  position: relative;
+  z-index: 1;
+  padding: 30rpx;
+}
+
+.nav-li::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background-color: inherit;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  bottom: -10%;
+  border-radius: 10rpx;
+  opacity: 0.2;
+  transform: scale(0.9, 0.9);
+}
+
+.nav-li .left {
+  width: 100rpx;
+}
+
+.nav-li .middle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+
+.nav-li .right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 120rpx;
+}
+
+.student-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.relative-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-name {
+  margin-top: 16rpx;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  font-weight: bold;
+}

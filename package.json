@@ -1,0 +1,16 @@
+{
+  "name": "early-edu",
+  "version": "1.0.0",
+  "description": "A mini program project.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Steve Wei",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
+}

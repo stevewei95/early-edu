@@ -1,0 +1,80 @@
+<cu-custom bgColor="bg-brand" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">个人信息</view>
+</cu-custom>
+<form>
+  <view class="cu-form-group" bind:tap="onChangeAvatar">
+    <view class="title">头像</view>
+    <view>
+      <view class="cu-avatar round bg-gray" style="background-image:url({{!userInfo.avatarUrl ? wxUserInfo.avatarUrl : userInfo.avatarUrl}});"></view>
+      <text class="cuIcon-right lg text-gray margin-left-xs"></text>
+    </view>
+  </view>
+  <view class="cu-form-group" bind:tap="showNameModal">
+    <view class="title">姓名</view>
+    <view>
+      <text class="text-black">{{userInfo.name}}</text>
+      <text class="cuIcon-right lg text-gray margin-left-xs"></text>
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">性别</view>
+    <view>
+      <text class="text-black">{{userInfo.gender === 1 ? '男' : '女'}}</text>
+      <text class="margin-left-xs"></text>
+    </view>
+  </view>
+  <view class="cu-form-group" bind:tap="showEnameModal" wx:if="{{loginUser.userType === 1}}">
+    <view class="title">英文名</view>
+    <view>
+      <text class="text-black">{{userInfo.ename}}</text>
+      <text class="cuIcon-right lg text-gray margin-left-xs"></text>
+    </view>
+  </view>
+  <view class="cu-form-group" bind:tap="showIntroModal">
+    <view class="title">介绍</view>
+    <view class="intro-container">
+      <view class="text-black intro-text">{{userInfo.introduction}}</view>
+      <text class="cuIcon-right lg text-gray margin-left-xs"></text>
+    </view>
+  </view>
+</form>
+<view class="cu-modal bottom-modal show" wx:if="{{showNameModal}}">
+  <view class="cu-dialog" style="height:calc(100vh - {{CustomBar}}px)">
+    <view class="cu-bar bg-white padding-lr">
+      <button class="cu-btn" bindtap="hideNameModal">取消</button>
+      <text class="text-black">姓名</text>
+      <button class="cu-btn bg-green" bindtap="modifyInfo">保存</button>
+    </view>
+    <view class="cu-form-group solid-top">
+      <input style="text-align:left" placeholder="" value="{{userInfoParam.name}}" maxlength="10" focus bindinput="nameInput"></input>
+    </view>
+  </view>
+</view>
+<view class="cu-modal bottom-modal show" wx:if="{{showEnameModal}}">
+  <view class="cu-dialog" style="height:calc(100vh - {{CustomBar}}px)">
+    <view class="cu-bar bg-white padding-lr">
+      <button class="cu-btn" bindtap="hideEnameModal">取消</button>
+      <text class="text-black">英文名</text>
+      <button class="cu-btn bg-green" bindtap="modifyInfo">保存</button>
+    </view>
+    <view class="cu-form-group solid-top">
+      <input style="text-align:left" placeholder="" value="{{userInfoParam.ename}}" maxlength="10" focus bindinput="enameInput"></input>
+    </view>
+  </view>
+</view>
+<view class="cu-modal bottom-modal show" wx:if="{{showIntroModal}}">
+  <view class="cu-dialog" style="height:calc(100vh - {{CustomBar}}px)">
+    <view class="cu-bar bg-white padding-lr">
+      <button class="cu-btn" bindtap="hideIntroModal">取消</button>
+      <text class="text-black">介绍</text>
+      <button class="cu-btn bg-green" bindtap="modifyInfo">保存</button>
+    </view>
+    <view class="cu-form-group solid-top">
+      <textarea style="text-align:left" value="{{userInfoParam.introduction}}" maxlength="30" focus bindinput="introInput" placeholder="至少输入10个字符"></textarea>
+    </view>
+  </view>
+</view>
+<!-- <view class="btn-bottom {{isIphoneX ? 'isIphoneX' : ''}}" wx:if="{{!select}}">
+  <button class="cu-btn round bg-brand lg" bind:tap="onSave">保存修改</button>
+</view> -->

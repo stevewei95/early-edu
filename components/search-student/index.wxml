@@ -1,0 +1,24 @@
+<view class="container">
+  <view class="header">
+    <view class="search-container">
+      <image class="icon" src="images/search.png" />
+      <input placeholder-class="in-bar" placeholder="学生姓名" class="bar" bind:confirm="onConfirm" value="{{q}}" confirm-type="search" />
+      <image bind:tap="onDelete" class="cancel-img" src="images/cancel.png" />
+    </view>
+    <view class="cancel" bind:tap="onCancel">取消</view>
+  </view>
+  <view class="student-container">
+    <view class="cu-list menu-avatar">
+      <block wx:for="{{dataArray}}" wx:key="{{item.id}}">
+        <view class="cu-item solid-top" bind:tap="onSelect" data-student="{{item}}">
+          <view class="cu-avatar round lg" style="background-image:url({{item.avatarUrl}});"></view>
+          <view class="content">
+            <view class="text-black">{{item.name}}（{{item.nickName}}）</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <loading-cmp class="loading" wx:if="{{loading}}"></loading-cmp>
+  <text wx:if="{{noneResult}}" class="empty-tip">没有搜索到学生</text>
+</view>

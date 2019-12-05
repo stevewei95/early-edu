@@ -1,0 +1,41 @@
+<cu-custom bgColor="bg-brand" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">发布反馈</view>
+</cu-custom>
+<form wx:if="{{!select}}">
+  <view class="cu-form-group" bind:tap="onShowSelect">
+    <view class="title text-black">选择学生</view>
+    <view>
+      <text class="text-gray">{{!selectedStudent ? '未选择' : selectedStudent.name + '（' + selectedStudent.nickName + '）'}}</text>
+      <text class="cuIcon-right lg text-gray"></text>
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="title text-black">反馈标题</view>
+    <input placeholder="请输入标题" bindinput="subjectInput" value="{{subject}}" confirm-type="next" hold-keyboard="true"></input>
+  </view>
+  <view class="cu-form-group">
+    <textarea maxlength="-1" bindinput="contentInput" placeholder="请输入内容，最少10个字符" value="{{content}}" hold-keyboard="true"></textarea>
+  </view>
+  <view class="cu-bar bg-white margin-top">
+    <view class="action text-black">图片上传</view>
+    <view class="action">{{imgList.length}}/9</view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-3 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+        <image src='{{imgList[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<9}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+</form>
+<view class="btn-bottom {{isIphoneX ? 'isIphoneX' : ''}}" wx:if="{{!select}}">
+  <button class="cu-btn round bg-brand lg" bind:tap="publishFeedback">确认并发布</button>
+</view>
+<search-cmp more="{{more}}" wx:if="{{select}}" bind:select="onSelect" bind:cancel="onCancelSelect"/>

@@ -1,0 +1,44 @@
+<cu-custom bgColor="bg-brand"></cu-custom>
+<view class="info-container" bind:tap="showUserEdit">
+  <view class="info-left">
+    <view class="cu-avatar round lg" style="background-image:url({{!userInfo.avatarUrl ? wxUserInfo.avatarUrl : userInfo.avatarUrl}});"></view>
+    <view class="info-user" wx:if="{{true}}">
+      <view class="user-main">
+        <text class="user-name">{{userInfo.name}}</text>
+        <view class="user-sex">{{userInfo.gender === 1 ? '女' : '男'}}</view>
+      </view>
+      <text class="user-id">{{mobile}}</text>
+    </view>
+    <view class="to-login" wx:if="{{false}}">登录/注册</view>
+  </view>
+  <view class="info-right">
+    <text class="cuIcon-right lg"></text>
+  </view>
+  <image src="/images/gif/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+</view>
+<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+  <view class="cu-item arrow" wx:if="{{loginUser.userType === 3}}" bind:tap="showStudents">
+    <navigator class="content" url="" hover-class="none">
+      <text class="cuIcon-emojifill text-black"></text>
+      <text class="text-black">我的孩子</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow" bind:tap="showSettings">
+    <navigator class="content" url="" hover-class="none">
+      <text class="cuIcon-settingsfill text-black"></text>
+      <text class="text-black">设置</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <button class="cu-btn content" open-type="feedback">
+      <text class="cuIcon-writefill text-black"></text>
+      <text class="text-black">意见反馈</text>
+    </button>
+  </view>
+  <view class="cu-item arrow" bind:tap="showAbout">
+    <navigator class="content" url="" hover-class="none">
+      <text class="cuIcon-infofill text-black"></text>
+      <text class="text-black">关于</text>
+    </navigator>
+  </view>
+</view>

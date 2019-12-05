@@ -1,0 +1,11 @@
+<cu-custom bgColor="bg-brand" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">{{loginUser.userType === 1 ? '我的反馈' : '老师说'}}</view>
+</cu-custom>
+<view class="container">
+  <feedbacks-cmp first="{{first}}" more="{{more}}"></feedbacks-cmp>
+  <view style="height: {{isIphoneX ? '168rpx' : '120rpx'}}"></view>
+</view>
+<view class="btn-bottom {{isIphoneX ? 'isIphoneX' : ''}}"  wx:if="{{loginUser.userType === 1}}">
+  <button class="cu-btn round bg-brand lg" bind:tap="showFeedbackCreate">发布反馈</button>
+</view>

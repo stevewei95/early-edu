@@ -1,0 +1,20 @@
+<cu-custom isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">手机登录</view>
+</cu-custom>
+<view class="container">
+  <view class="form-container">
+    <view class="cu-form-group">
+      <input type="number" bindinput="bindMobileInput" placeholder="请输入手机号"></input>
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-yellow">+86</view>
+        <view class="cu-tag line-yellow">中国大陆</view>
+      </view>
+    </view>
+    <view class="cu-form-group vcode">
+      <input type="number" bindinput="bindVerifyCodeInput" placeholder="请输入验证码"></input>
+      <button class="cu-btn bg-yellow sm" bind:tap="onVerifyCode">验证码</button>
+    </view>
+    <button class="cu-btn bg-yellow margin-top-lg lg" bind:tap="onMobileLogin">登录</button>
+  </view>
+</view>

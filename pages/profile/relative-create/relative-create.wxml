@@ -1,0 +1,45 @@
+<cu-custom bgColor="bg-brand" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">新增关联</view>
+</cu-custom>
+<form>
+  <view class="cu-form-group" bind:tap="showPhoneModal">
+    <view class="title">登录手机</view>
+    <view class="text-df">
+      <text class="text-black">{{relativeInfoParam.loginPhone || '请输入'}}</text>
+      <text class="cuIcon-right lg text-grey margin-left-xs"></text>
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">孩子关系</view>
+    <picker bindchange="relationChange" value="{{relationIndex}}" range="{{relations}}" range-key="name">
+      <view class="picker">
+        <text>{{relativeInfoParam.relationType?filter.relationText(relativeInfoParam.relationType):'请选择'}}</text>
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">操作权限</view>
+    <picker bindchange="permissionChange" value="{{permissionIndex}}" range="{{permissions}}">
+      <view class="picker">
+        <text>{{permissionIndex!==null?permissions[permissionIndex]:'请选择'}}</text>
+      </view>
+    </picker>
+  </view>
+</form>
+<view class="btn-bottom {{isIphoneX ? 'isIphoneX' : ''}}" wx:if="{{!select}}">
+  <button class="cu-btn round bg-brand lg" bind:tap="onSave">保存提交</button>
+</view>
+<view class="cu-modal bottom-modal show" wx:if="{{showPhoneModal}}">
+  <view class="cu-dialog" style="height:calc(100vh - {{CustomBar}}px)">
+    <view class="cu-bar bg-white padding-lr">
+      <button class="cu-btn" bindtap="hidePhoneModal">取消</button>
+      <text class="text-black">登录手机</text>
+      <button class="cu-btn bg-green" bindtap="savePhone">确认</button>
+    </view>
+    <view class="cu-form-group solid-top">
+      <input style="text-align:left" placeholder="请输入登录手机" type="number" value="{{loginPhone}}" maxlength="11" focus bindinput="phoneInput"></input>
+    </view>
+  </view>
+</view>
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>

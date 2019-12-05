@@ -1,0 +1,174 @@
+.custom-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 30rpx;
+}
+
+.hello {
+  font: bold 40rpx/40rpx -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.main-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 280rpx;
+  background-color: var(--brandColor);
+  box-shadow: 0 40rpx 40rpx 10rpx var(--brandColor);
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 200rpx;
+  padding: 0 80rpx;
+}
+
+.btn-container-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-container-item image {
+  width: 78rpx;
+  height: 78rpx;
+}
+
+.btn-container-item text {
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  line-height: 24rpx;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.info-card {
+  position: absolute;
+  top: 200rpx;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  width: 690rpx;
+  height: 230rpx;
+  box-sizing: border-box;
+  border-radius: 20rpx;
+  background-color: #212121;
+  color: #fff;
+  overflow: hidden;
+}
+
+.info-top {
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  padding: 30rpx;
+}
+
+/* .info-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 82rpx;
+  margin-left: 20rpx;
+} */
+
+.user-main-info {
+  display: flex;
+  align-items: center;
+  width: 400rpx;
+}
+
+.info-top .user-name {
+  font-size: 36rpx;
+  line-height: 36rpx;
+  font-weight: bold;
+}
+
+.info-top .user-sex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 34rpx;
+  height: 34rpx;
+  margin-left: 16rpx;
+  font-size: 22rpx;
+  line-height: 22rpx;
+  border: 1rpx solid var(--brandColor);
+  border-radius: 6rpx;
+  color: var(--brandColor);
+}
+
+.info-top .user-id {
+  font-size: 24rpx;
+  line-height: 24rpx;
+}
+
+.info-edit {
+  /* position: absolute;
+  top: 0;
+  right: 0; */
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.info-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.info-content .content-text {
+  font-size: 24rpx;
+  line-height: 30rpx;
+  color: #ddd;
+}
+
+.content-title {
+  margin-bottom: 12rpx;
+  font-size: 24rpx;
+  line-height: 24rpx;
+  font-weight: bold;
+}
+
+.user-avatar {
+  width: 230rpx;
+  height: 230rpx;
+}
+
+.list-container {
+  width: 100%;
+  margin-top: 180rpx;
+  padding-bottom: 50rpx;
+}
+
+.list-item {
+  padding: 0 30rpx 30rpx;
+}
+
+.list-item .shadow {
+  box-shadow: 0 10rpx 20rpx 0 #ddd;
+}
+
+.list-item.no-card>.cu-item {
+  border-radius: 20rpx;
+}
+
+.no-data {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 600rpx;
+}
+
+.grid.col-1.grid-square>view {
+  height: 320rpx;
+}

@@ -1,0 +1,11 @@
+/* pages/profile/edit/edit.wxss */
+.intro-container {
+  display: flex;
+  align-items: center;
+}
+
+.intro-text {
+  max-width: 510rpx;
+  padding: 30rpx 0;
+  font-size: 30rpx;
+}
